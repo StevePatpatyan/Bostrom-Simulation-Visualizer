@@ -35,8 +35,8 @@ simulationNum = 1
 childlessNodes = list(tree.nodes.keys())
 for x in range(depth):
     print(f"Layer {x+1} being created...")
+    toBeChildlessNodes = []
     for node in childlessNodes:
-        toBeChildlessNodes = []
         for sim in range(num_sims):
             toBeChildlessNodes.append(
                 tree.create_node("Sim", f"sim {simulationNum}", parent=node).identifier
@@ -50,6 +50,12 @@ for x in range(depth):
 print("Visualizing hypothesis...")
 sleep(1)
 tree.to_graphviz("visual.dot")
+# with open("visual.dot", "r") as dot_file:
+#     lines = dot_file.readlines()
+#     lines[0] += '\nrankdir="BT"'
+# with open("visual.dot", "w") as dot_file:
+#     dot_file.writelines(lines)
+
 
 # create diagram of tree as png using graphviz/dot
 import subprocess
